@@ -1,28 +1,26 @@
 class SessionsController < ApplicationController
   def new
-    @user = User.new
+    @error = 0
   end
   
   def create
-    user = User.find_by(email: params[:email])
-    puts user
-    puts user.email
-    puts user.first_name
-    puts user.last_name
-    puts params[:password]
-    puts user.password_digest
-    puts user.authenticate(params: [:password])
+    email_attempt = params[:email]
+    user = User.find_by(email: "#{email_attempt}")
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      # redirige où tu veux, avec un flash ou pas
-  
+      name = User.find(session[:user_id]).first_name
+      flash[:notice] = "Connexion réussie, Bienvenue #{name} !"
+      redirect_to '/'
     else
-      flash.now[:danger] = 'Invalid email/password combination'
-      render new_session_path
-    end
+      @error = 1
+      render :new
+    end    
+
   end
 
   def destroy
+    session.delete(:user_id)
+    redirect_to '/'
   end
 
 

@@ -28,13 +28,22 @@
           <a class="nav-link" href="<%=new_gossip_path%>">Créer un gossip</a>
           </ul>
         </li>
-      <ul class="navbar-nav ml-auto"
+      <ul class="navbar-nav ml-auto">
+      <% if session[:user_id] %>
         <li class="nav-item">
-        <a class="nav-link" href="<%=new_session_path%>">Connexion </a>
-      </li>
-        <li class="nav-item">
-        <a class="nav-link" href="<%=new_user_path%>">Inscription </a>
+        <%= link_to "Deconnexion", session_path(session.id), method: :delete, class: "nav-link" %>
         </li>
+      <% else %>
+        <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          &#9776;
+        </button>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="<%=new_session_path%>">Connexion </a>
+          <a class="dropdown-item" href="<%=new_user_path%>">Inscription </a>
+        </div>
+      </div>         
+      <% end %>
       </ul>
     </div>
   </nav>

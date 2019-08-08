@@ -1,16 +1,12 @@
 <h1> Connexion </h1>
 
-<% if @user.errors.any? %>
+<% if @error == 1 %>
 <div class="alert_n">
 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
 
-  <p>Nous n'avons pas réussi à vous authentifier pour la (ou les) raison(s) suivante(s) :</p>
+  <p>Nous n'avons pas réussi à vous authentifier: mauvaise combinaison email/mot de passe</p>
   <ul>
-  <% @user.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-  <% end %>
-</ul>
-</div>
+  </div>
 <% end %>
 </br></br></br>
 

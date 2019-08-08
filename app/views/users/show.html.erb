@@ -1,0 +1,15 @@
+    
+<body class="d-flex flex-column h-100">
+  <div class="container">
+    <main role="main" class="my-auto">
+    <h1 class="mt-5"><%= @users.find(@index).first_name%> <%= @users.find(@index).last_name%></h1>
+    <p>Description :<br/>
+    <%= @users.find(@index).description%>
+    </p>
+    <p>E-mail : <%= @users.find(@index).email%></p>
+    <p>Âge : <%= @users.find(@index).age%> ans</p>
+    <p>Ville : <%=link_to "#{City.find(User.find(params[:id]).city_id).name}", city_path(@city) %></p>
+    <p>Crée le <%= @users.find(@index).created_at.strftime("%d/%m/%Y")%></p>  
+    </main>
+  </div>
+</body>

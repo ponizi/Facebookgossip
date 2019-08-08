@@ -1,0 +1,29 @@
+<h1> Connexion </h1>
+
+<% if @user.errors.any? %>
+<div class="alert_n">
+<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+
+  <p>Nous n'avons pas réussi à vous authentifier pour la (ou les) raison(s) suivante(s) :</p>
+  <ul>
+  <% @user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+</ul>
+</div>
+<% end %>
+</br></br></br>
+
+<%= form_for "", method: "POST",:url => { :action => :create }, :html => { :class => "form-signin" } do |f|%>
+  <h1 class="h3 mb-3 font-weight-normal">Se connecter</h1>
+  <div class="row">
+    <label for="inputEmail" class="sr-only">Adresse e-mail</label>
+    <%= f.email_field :email, class: "form-control", id: "inputEmail", placeholder:"Adresse e-mail"%>
+    <label for="inputPassword" class="sr-only">Mot de passe</label>
+    <%= f.password_field :password, class: "form-control", id: "inputPassword", placeholder:"Mot de passe"%>
+  <div class="col-md-12 mb-3">
+    <%= f.submit 'Connexion', class:"btn btn-primary btn-lg btn-block"%>
+  </div>
+<%end%>
+
+

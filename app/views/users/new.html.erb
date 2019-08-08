@@ -1,0 +1,44 @@
+<h1> Créer un compte </h1>
+
+<% if @user.errors.any? %>
+<div class="alert_n">
+<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+
+  <p>Nous n'avons pas réussi à créer le potin pour la (ou les) raison(s) suivante(s) :</p>
+  <ul>
+  <% @user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+</ul>
+</div>
+<% end %>
+</br></br></br>
+
+
+
+<%= form_for @user do |f| %>
+  <div class="form-group">
+      <label>Prénom </label>
+      <%= f.text_field :first_name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+      <label>Nom </label>
+      <%= f.text_area :last_name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+      <label>Email </label>
+      <%= f.text_area :email, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+      <label>Mot de passe </label>
+      <%= f.password_field :password, class: 'form-control' %>
+  </div>
+
+
+  <div class="form-group">
+      <button type="submit" class="btn btn-primary"> Créer </button>
+  </div>
+<% end %>

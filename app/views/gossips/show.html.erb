@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <title>PAGE POTIN</title>
+  </head>
+  <body>
+    <h1>PAGE POTIN</h1>
+    <p>Voici la page du potin n° <%= params[:id] %> <br/>
+    Son auteur : <a href="http://localhost:3000/users/<%= @gossips.find(params[:id]).user.id =%>"><%= @gossips.find(params[:id]).user.first_name =%> <%= @gossips.find(params[:id]).user.last_name =%><br/></a>
+    Le contenu du potin : <%= @gossips.find(params[:id]).content %><a href="<%= edit_gossip_path%>">      Modifier</a> <br/> 
+    Date : <%= @gossips.find(params[:id]).created_at %> <br/>
+    Ville : <a href="<%= city_path(@city.id) %>"><%= City.find(User.find(Gossip.find(params[:id]).user_id).city_id).name %></a></br></br></br>
+    <%=link_to "Supprimer", gossip_path(@index), method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class: "btn btn-danger" %>
+    <a href="<%= root_path %>" class="btn btn-primary">Revenir aux gossips</a>
+    </p>
+  </body>
+</html>
